@@ -109,12 +109,12 @@
           if(result.ok && result.json && result.json.success){
             revealFormSuccess(form);
           } else {
-            showError('Senden hat nicht geklappt. Bitte versuch es noch einmal oder schreib uns direkt an hallo@wn-webting.de.');
+            showError('Senden hat nicht geklappt. Bitte versuch es noch einmal oder schreib uns direkt an wn-kontakt@wn-webting.com.');
           }
         })
         .catch(function(){
           setLoading(false);
-          showError('Keine Verbindung möglich. Bitte versuch es noch einmal oder schreib uns direkt an hallo@wn-webting.de.');
+          showError('Keine Verbindung möglich. Bitte versuch es noch einmal oder schreib uns direkt an wn-kontakt@wn-webting.com.');
         });
     });
   });

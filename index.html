@@ -266,14 +266,11 @@
         <div class="foot-col">
           <h4>Unternehmen</h4>
           <a href="#vorgehen">Vorgehen</a>
-          <a href="#cases">Cases</a>
           <a href="#kontakt">Kontakt</a>
         </div>
         <div class="foot-col">
           <h4>Social</h4>
-          <a href="#" rel="noopener">Instagram</a>
-          <a href="#" rel="noopener">LinkedIn</a>
-          <a href="mailto:hallo@wn-webting.de">hallo@wn-webting.de</a>
+          <a href="mailto:wn-kontakt@wn-webting.com">wn-kontakt@wn-webting.com</a>
         </div>
       </div>
     </div>
@@ -558,12 +555,12 @@
             form.querySelectorAll('.field, .btn, .form-note, .form-error').forEach(function(el){ el.style.display='none'; });
             document.getElementById('form-ok').style.display='block';
           } else {
-            showFormError('Senden hat nicht geklappt. Bitte versuch es noch einmal oder schreib uns direkt an hallo@wn-webting.de.');
+            showFormError('Senden hat nicht geklappt. Bitte versuch es noch einmal oder schreib uns direkt an wn-kontakt@wn-webting.com.');
           }
         })
         .catch(function(){
           setFormLoading(false);
-          showFormError('Keine Verbindung möglich. Bitte versuch es noch einmal oder schreib uns direkt an hallo@wn-webting.de.');
+          showFormError('Keine Verbindung möglich. Bitte versuch es noch einmal oder schreib uns direkt an wn-kontakt@wn-webting.com.');
         });
     });
   }
