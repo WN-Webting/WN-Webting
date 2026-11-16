@@ -1,0 +1,18 @@
+# Geheimnisse / Zugangsdaten
+.env
+.env.*
+*.token
+*.pem
+secrets.*
+
+# OS-Muell
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Build
+node_modules/
+dist/
