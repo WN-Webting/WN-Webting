@@ -145,13 +145,46 @@
     }
 
     /* 3) Band über dem Kontaktbereich, wieder von rechts nach links */
-    var yk = absTop(kontakt) + 8*sc;
+    var ctaBox = kontakt.querySelector('.cta-inner');
+    var yk = (ctaBox ? absTop(ctaBox) : absTop(kontakt) + 112*sc) + 6*sc;   /* Band läuft hinter dem oberen Rand des Kastens */
     var p2 = [[1.07,0],[.80,38],[.52,-24],[.26,34],[-.08,-4]].map(function(a){ return {x:W*a[0], y:yk + a[1]*sc}; });
     p2[0].t = {x:-1, y:.15}; p2[p2.length-1].t = {x:-1, y:-.1};
     var line2 = curve(p2), cum2 = cumLen(line2), ws2 = swell(cum2, base, sc, 2.4, .7, 1.35);
 
     var d = polygon(line0, w0) + (dsub ? ' ' + dsub : '') + ' ' + polygon(line2, ws2);
     heroPart.path.setAttribute('d', d); pagePart.path.setAttribute('d', d);
+
+    /* Leistungen: Texte stehen neben dem Band, nicht darauf (Karte 1: Text rechts vom Bild, Karte 2: Text links vom Bild) */
+    (function(){
+      var grid0 = document.querySelector('#leistungen .services-grid');
+      var cards = grid0 ? [].slice.call(grid0.querySelectorAll('.service-card')) : [];
+      if(cards.length !== 2) return;
+      if(narrow){
+        cards.forEach(function(c){ c.style.gridTemplateColumns = ''; c.style.columnGap = ''; c.style.removeProperty('--padl'); });
+        return;
+      }
+      var gr0 = grid0.getBoundingClientRect(), gl0 = gr0.left, gw0 = gr0.width, M = 36;
+      function bandSpan(y0, y1){
+        var lo = 1e9, hi = -1e9, q;
+        for(q=0;q<line0.length;q++){
+          if(line0[q].y >= y0 && line0[q].y <= y1){ lo = Math.min(lo, line0[q].x - w0[q]/2); hi = Math.max(hi, line0[q].x + w0[q]/2); }
+        }
+        return {lo:lo, hi:hi};
+      }
+      /* Karte 1 */
+      var c1 = cards[0], img1 = 500, t1 = absTop(c1), h1 = c1.offsetHeight;
+      var s1 = bandSpan(t1, t1 + h1), left1 = Math.max(gl0 + img1 + 44, (s1.hi > -1e8 ? s1.hi : 0) + M);
+      c1.style.gridTemplateColumns = img1 + 'px 1fr';
+      c1.style.columnGap = Math.max(44, left1 - (gl0 + img1)) + 'px';
+      /* Karte 2 */
+      var c2 = cards[1], img2 = 500, t2 = absTop(c2), h2 = c2.offsetHeight;
+      var s2 = bandSpan(t2 + 50, t2 + h2 - 40), hi2 = s2.hi > -1e8 ? s2.hi : 0;
+      var textLeft2 = Math.max(gl0, hi2 + M);
+      img2 = Math.max(300, Math.min(500, (gl0 + gw0 - 44) - (textLeft2 + 260)));
+      c2.style.gridTemplateColumns = '1fr ' + img2 + 'px';
+      c2.style.columnGap = '44px';
+      c2.style.setProperty('--padl', Math.max(0, textLeft2 - gl0) + 'px');
+    })();
 
     /* Schritte neben dem Band, nummerierte Pins auf dem Band + Verbindung zur Karte */
     var stepMarks = [];

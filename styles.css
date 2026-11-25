@@ -1010,3 +1010,184 @@ header.nav{
 .results .metric span{ margin-top:.6rem; }
 .results .metric{ padding:18px 12px; }
 .results .metric b{ font-size:clamp(1.5rem,2.7vw,2.5rem); overflow-wrap:normal; word-break:normal; }
+
+/* Kontaktkasten in Hintergrundfarbe, liegt über dem grünen Band */
+.cta-inner{ background:#F0E5DB; }
+#kontakt .cta-inner{ position:relative; z-index:1; }
+
+/* Leistungen: kompakter – schmaleres Raster, flachere Bilder, kleinere Texte */
+#leistungen .services-grid--two{ max-width:900px; margin-left:auto; margin-right:auto; gap:28px; }
+#leistungen .service-media{ aspect-ratio:16/9; margin-bottom:18px; }
+#leistungen .service-card h3{ font-size:1.3rem; margin-bottom:.6rem; }
+#leistungen .service-card p{ font-size:.92rem; line-height:1.55; }
+#leistungen .service-card .btn{ margin-top:1.2rem; padding:.7rem 1.2rem; font-size:.9rem; }
+/* Leistungen: Karten weiter auseinander, Kartengröße bleibt */
+#leistungen .services-grid--two{ max-width:970px; column-gap:96px; }
+@media (max-width:860px){ #leistungen .services-grid--two{ max-width:none; column-gap:0; row-gap:40px; } }
+
+/* Leistungen: pinker Schimmer-Rand nur um die Bilder, Texte bleiben ohne Rand */
+#leistungen .service-media{
+  position:relative; overflow:hidden;
+  box-shadow:0 14px 36px rgba(71,67,41,.10), 0 0 22px rgba(252,117,180,.18);
+}
+#leistungen .service-media::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:2px; pointer-events:none; z-index:2;
+  background:linear-gradient(115deg, rgba(252,117,180,.30) 0%, rgba(252,117,180,.95) 22%, rgba(255,214,234,1) 34%, rgba(252,117,180,.30) 52%, rgba(252,117,180,.30) 100%);
+  background-size:260% 260%; background-position:0% 50%;
+  animation:pinkShimmer 7s ease-in-out infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+#leistungen .service-card:hover .service-media{ box-shadow:0 18px 44px rgba(71,67,41,.14), 0 0 30px rgba(252,117,180,.30); }
+@media (prefers-reduced-motion:reduce){ #leistungen .service-media::after{ animation:none; background-position:30% 50%; } }
+
+/* Tippen der Hero-Überschrift + Unterstrich danach */
+.hero h1 .tw{ position:relative; }
+.hero h1.typing .tw{ opacity:0; }
+.hero h1.typing .tw.on{ opacity:1; }
+.hero h1.typing .tw.caret::after{
+  content:""; position:absolute; right:-.06em; top:.1em; width:.055em; height:.82em; background:var(--accent);
+  animation:twBlink .7s steps(1) infinite;
+}
+@keyframes twBlink{ 50%{ opacity:0; } }
+.hero h1.typing em::after{ animation:none; clip-path:inset(0 100% 0 0); }
+.hero h1.typed em::after{ animation:zapIn .9s .1s var(--ease) forwards; }
+
+/* Leistungen: Karten stehen einzeln untereinander, die erste bündig mit der Überschrift, ohne Kasten */
+#leistungen .services-grid--two{ max-width:none; margin:0; display:flex; flex-direction:column; gap:64px; }
+#leistungen .service-card{ width:min(500px,100%); background:none; box-shadow:none; border-radius:0; }
+#leistungen .service-card:nth-child(1){ align-self:flex-start; }
+#leistungen .service-card:nth-child(2){ align-self:flex-end; }
+@media (max-width:860px){ #leistungen .service-card:nth-child(n){ align-self:stretch; width:auto; } #leistungen .services-grid--two{ gap:44px; } }
+/* unsichtbare Fläche in Hintergrundfarbe: das Band blendet hinter der Schrift weich aus */
+#leistungen .service-card{ background:#F0E5DB; box-shadow:0 0 26px 8px #F0E5DB; }
+/* Leistungen: kein Hintergrund hinter den Texten, sie stehen direkt auf der Seite */
+#leistungen .service-card{ background:none; box-shadow:none; }
+/* Schrift bleibt auch dort lesbar, wo das Band dahinter läuft (heller Schriftrand statt Hintergrundfläche) */
+#leistungen .service-card h3, #leistungen .service-card p{
+  text-shadow:0 0 2px #F0E5DB, 0 0 4px #F0E5DB, 0 0 8px #F0E5DB, 0 0 14px #F0E5DB, 0 0 20px #F0E5DB;
+}
+/* Schrift passt sich an: auf Sand dunkel, über dem grünen Band hell (Mischmodus), ganz ohne Hintergrundfläche */
+#leistungen .service-card h3, #leistungen .service-card p{ text-shadow:none; mix-blend-mode:difference; }
+#leistungen .service-card h3{ color:#fff; }
+#leistungen .service-card p{ color:#b4b4b4; }
+
+/* Leistungen: Bild und Text nebeneinander – Website-Management: Text rechts vom Bild, Web-App: Text links vom Bild */
+#leistungen .service-card h3, #leistungen .service-card p{ mix-blend-mode:normal; text-shadow:none; }
+#leistungen .service-card h3{ color:var(--text); }
+#leistungen .service-card p{ color:var(--muted); }
+@media (min-width:861px){
+  #leistungen .service-card{
+    width:min(880px,100%); display:grid; align-content:center; align-items:start;
+    grid-template-columns:500px 1fr; column-gap:44px; grid-template-rows:auto auto auto;
+  }
+  #leistungen .service-card .service-media{ grid-column:1; grid-row:1 / span 3; margin-bottom:0; }
+  #leistungen .service-card h3{ grid-column:2; grid-row:1; align-self:end; margin:0 0 .7rem; }
+  #leistungen .service-card p{ grid-column:2; grid-row:2; flex:none; }
+  #leistungen .service-card .btn{ grid-column:2; grid-row:3; align-self:start; justify-self:start; margin-top:1.3rem; margin-left:0; }
+  #leistungen .service-card:nth-child(2){ grid-template-columns:1fr 500px; margin-top:-70px; }
+  #leistungen .service-card:nth-child(2) .service-media{ grid-column:2; }
+  #leistungen .service-card:nth-child(2) h3, #leistungen .service-card:nth-child(2) p, #leistungen .service-card:nth-child(2) .btn{ grid-column:1; }
+  #leistungen .service-card:nth-child(2) h3, #leistungen .service-card:nth-child(2) p{ text-align:right; }
+  #leistungen .service-card:nth-child(2) .btn{ justify-self:end; }
+}
+
+/* Feinschliff: Karten über volle Breite, Textbreite begrenzt, Text von Karte 2 wird per Skript neben das Band geschoben */
+@media (min-width:861px){
+  #leistungen .service-card{ width:100%; }
+  #leistungen .service-card:nth-child(2){ margin-top:-30px; }
+  #leistungen .service-card p{ max-width:380px; }
+  #leistungen .service-card:nth-child(2) p{ margin-left:auto; }
+  #leistungen .service-card:nth-child(2) h3, #leistungen .service-card:nth-child(2) p, #leistungen .service-card:nth-child(2) .btn{ padding-left:var(--padl,0); }
+  #leistungen .service-card:nth-child(2) .btn{ margin-left:var(--padl,0); padding-left:1.2rem; }
+}
+@media (min-width:861px){
+  #leistungen .service-card:nth-child(2) h3, #leistungen .service-card:nth-child(2) p{ padding-left:0; margin-left:var(--padl,0); max-width:none; }
+  #leistungen .service-card:nth-child(2) .btn{ margin-left:var(--padl,0); }
+}
+/* Web-App-Entwicklung: Text linksbündig, Karte ca. 1 cm tiefer */
+@media (min-width:861px){
+  #leistungen .service-card:nth-child(2){ margin-top:8px; }
+  #leistungen .service-card:nth-child(2) h3, #leistungen .service-card:nth-child(2) p{ text-align:left; }
+  #leistungen .service-card:nth-child(2) p{ max-width:380px; }
+  #leistungen .service-card:nth-child(2) .btn{ justify-self:start; }
+}
+@media (min-width:861px){ #leistungen .service-card:nth-child(2){ margin-top:27px; } }
+/* Hero: die beiden Buttons ca. 1 cm höher (Überschrift bleibt an ihrer Stelle) */
+.hero .hero-actions{ position:relative; top:-38px; }
+
+/* Website-Management: Hero komplett in Hintergrundfarbe (ohne die Linien-Animation), Überschrift in Mocha Green */
+.page-hero--plain:not(.page-hero--video)::before{
+  display:block; content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:#F0E5DB;
+  -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent 100%); mask-image:linear-gradient(180deg,#000 82%,transparent 100%);
+}
+.page-hero--plain h1{ color:#474329; }
+
+/* „Alle Leistungen": ganz oben direkt unter der Menüzeile, eigene Zeile; Überschrift bleibt an ihrer Stelle */
+.page-hero:has(.back-link[href$="#leistungen"]){ padding-top:26px; }
+.page-hero .back-link[href$="#leistungen"]{ display:flex; width:fit-content; margin-bottom:calc(2rem + 46px); }
+
+/* „Alle Leistungen" und „Leistung" gemeinsam ganz oben in einer Zeile unter der Menüzeile */
+.page-hero:has(.back-link[href$="#leistungen"]) .back-link{ display:inline-flex; margin:0 1.4rem 0 0; vertical-align:middle; }
+.page-hero:has(.back-link[href$="#leistungen"]) .eyebrow{ vertical-align:middle; }
+.page-hero:has(.back-link[href$="#leistungen"]) h1{ margin-top:112px; }
+
+/* Website-Management: Überschrift größer, in Großbuchstaben, über die ganze Seitenbreite */
+.page-hero--plain h1{
+  max-width:none; text-transform:uppercase; letter-spacing:-.035em; line-height:.98;
+  font-size:clamp(2.3rem,6.4vw,6rem);
+}
+
+/* „Websites," groß oben links (Buchstabenhöhe ca. 3 cm), der Rest der Überschrift kleiner darunter */
+.page-hero--plain h1{ font-size:clamp(1.7rem,3.8vw,3.6rem); margin-top:30px; }
+.page-hero--plain h1 .h1-big{ display:block; font-size:clamp(4rem,11vw,10rem); line-height:.9; letter-spacing:-.045em; margin-bottom:.12em; }
+.page-hero:has(.back-link[href$="#leistungen"]) h1.h1-wrap, .page-hero--plain h1{ margin-top:6px; }
+.page-hero--plain h1 .h1-big{ margin-top:0; }
+.page-hero.page-hero--plain:has(.back-link[href$="#leistungen"]) h1{ margin-top:4px; }
+/* „Die Besucher zu Kunden machen." mit Buchstabenhöhe ca. 2 cm */
+.page-hero.page-hero--plain h1{ font-size:clamp(2rem,7.3vw,6.6rem); line-height:.95; }
+.page-hero--plain h1 .h1-big{ font-size:clamp(4rem,11vw,10rem); }
+/* „DIE BESUCHER ZU KUNDEN MACHEN." rechtsbündig, „WEBSITES," bleibt links */
+.page-hero--plain h1{ text-align:right; }
+.page-hero--plain h1 .h1-big{ text-align:left; }
+/* nur „DIE BESUCHER" rechtsbündig, „ZU KUNDEN MACHEN." wieder links darunter */
+.page-hero--plain h1{ text-align:left; }
+.page-hero--plain h1 .h1-right{ display:block; text-align:right; }
+.page-hero--plain h1 .h1-rest{ display:block; text-align:left; }
+/* Website-Management: kleiner Text unter der Überschrift vorerst ausgeblendet (zum Zurückholen diese Zeile entfernen) */
+.page-hero--plain .lead{ display:none; }
+/* Website-Management: Hero füllt den Bildschirm, die Buttons stehen ganz unten mittig */
+.page-hero--plain{ min-height:calc(100dvh - 70px); display:flex; flex-direction:column; padding-bottom:44px; }
+.page-hero--plain > .wrap{ flex:1; display:flex; flex-direction:column; }
+.page-hero--plain .hero-actions{ margin-top:auto; justify-content:center; }
+.page-hero--plain > .wrap{ display:grid; grid-template-columns:max-content max-content 1fr; grid-template-rows:auto auto 1fr auto; align-items:center; }
+.page-hero--plain .back-link{ grid-column:1; grid-row:1; margin:0 !important; }
+.page-hero--plain .eyebrow{ grid-column:2; grid-row:1; margin:0 0 0 1.4rem; }
+.page-hero--plain h1{ grid-column:1 / -1; grid-row:2; }
+.page-hero--plain .lead{ grid-column:1 / -1; grid-row:3; }
+.page-hero--plain .hero-actions{ grid-column:1 / -1; grid-row:4; align-self:end; justify-content:center; margin-top:0; }
+/* Buttons ca. 2 cm tiefer */
+.page-hero--plain .hero-actions{ position:relative; top:76px; }
+/* alle Zeilen der Überschrift gleich hoch wie „WEBSITES," */
+.page-hero--plain h1 .h1-right, .page-hero--plain h1 .h1-rest{ font-size:clamp(4rem,11vw,10rem); line-height:.9; letter-spacing:-.045em; }
+.page-hero.page-hero--plain h1{ font-size:clamp(4rem,11vw,10rem); line-height:.9; }
+/* Überschrift ca. 0,5 cm kleiner (Buchstabenhöhe) */
+.page-hero--plain h1 .h1-big, .page-hero--plain h1 .h1-right, .page-hero--plain h1 .h1-rest, .page-hero.page-hero--plain h1{ font-size:clamp(3.4rem,9.1vw,8.3rem); }
+/* „Kunden" in pinker Schnörkelschrift, leicht schräg */
+.page-hero--plain h1 .h1-script{
+  display:inline-block; font-family:"Dancing Script","Brush Script MT",cursive; font-weight:700;
+  color:#FC75B4; text-transform:none; letter-spacing:0; font-size:1.18em; line-height:.9;
+  transform:rotate(-5deg); transform-origin:0 70%; margin-left:.06em;
+}
+/* „Kunden" in Mrs Saint Delafield, ca. 0,5 cm tiefer */
+.page-hero--plain h1 .h1-script{
+  font-family:"Mrs Saint Delafield","Dancing Script",cursive; font-weight:400; font-size:1.75em; line-height:.8;
+  transform:translateY(19px) rotate(-5deg); transform-origin:0 70%;
+}
+.page-hero--plain h1 .h1-script{ font-size:1.5em; }
+/* Buttons 1 cm höher als zuvor */
+.page-hero--plain .hero-actions{ top:38px; }
+/* „MACHEN." und die Buttons je 0,5 cm höher */
+.page-hero--plain h1 .h1-rest + .h1-right{ position:relative; top:-19px; }
+.page-hero--plain .hero-actions{ top:19px; }
