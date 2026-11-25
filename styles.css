@@ -397,3 +397,299 @@ footer{ border-top:1px solid var(--line); padding:64px 0 40px; background:var(--
   .reveal{ opacity:1; transform:none; }
   .marquee-track{ animation:none; }
 }
+
+/* ============================================================
+   GLAS-LOOK & FLIESSENDE ÜBERGÄNGE
+   Ziel: keine hart gestapelten Blöcke mehr, sondern ein durchgehender,
+   leicht glasiger Hintergrund. Layout, Texte und Animationen bleiben.
+   ============================================================ */
+:root{
+  --glass:        rgba(255,255,255,.58);
+  --glass-strong: rgba(255,255,255,.78);
+  --glass-line:   rgba(255,255,255,.85);
+  --glass-shadow: 0 10px 40px rgba(39,54,16,.07), 0 1px 0 rgba(255,255,255,.9) inset;
+}
+
+/* durchgehender Hintergrund über die ganze Seite */
+body{ background:#f3f6f7; }
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(52vw 42vw at 8% 6%,   rgba(79,109,245,.20), transparent 62%),
+    radial-gradient(46vw 40vw at 96% 28%, rgba(34,211,238,.17), transparent 64%),
+    radial-gradient(50vw 44vw at 14% 74%, rgba(39,54,16,.10),    transparent 64%),
+    radial-gradient(44vw 40vw at 90% 92%, rgba(20,184,166,.16), transparent 64%),
+    linear-gradient(180deg,#f4f6f8 0%,#f1f5f7 50%,#f3f6f6 100%);
+}
+
+/* harte Bänder aufweichen */
+.results, .service-contact{ background:transparent; border-top:0; border-bottom:0; }
+.page-hero{ background:transparent; border-bottom:0; }
+footer{
+  background:var(--glass); border-top:1px solid var(--glass-line);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+}
+.results .metrics{
+  background:var(--glass); border:1px solid var(--glass-line); border-radius:calc(var(--radius) + 8px);
+  padding:34px 36px; box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+}
+.metric{ border-right-color:rgba(39,54,16,.12); }
+
+/* Karten glasig statt weiße Kästen */
+.pstep, .value-card, .feature-card{
+  background:var(--glass); border:1px solid var(--glass-line); border-radius:calc(var(--radius) + 6px);
+  box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+}
+.icon-tile{ background:rgba(39,54,16,.07); }
+.cta-inner{
+  background:
+    radial-gradient(120% 120% at 100% 0%, rgba(39,54,16,.10), transparent 55%),
+    var(--glass-strong);
+  border:1px solid var(--glass-line); box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+}
+.field input, .field textarea, .field select{ background:rgba(255,255,255,.75); }
+.service-media{
+  border-radius:calc(var(--radius) + 6px);
+  box-shadow:0 18px 44px rgba(39,54,16,.12), 0 0 0 1px var(--glass-line);
+}
+.contact-badge{ background:var(--glass-strong); border-color:var(--glass-line); }
+
+/* ---------- Hero: glasiger Hintergrund (Animation + Bilder bleiben) ---------- */
+.hero{ background:linear-gradient(160deg,#eef3ee 0%,#dde8e3 48%,#e3e9f2 100%); }
+.hero::after{                         /* weicher Auslauf in die nächste Sektion */
+  content:""; position:absolute; left:0; right:0; bottom:0; height:180px; z-index:2; pointer-events:none;
+  background:linear-gradient(180deg, rgba(243,245,241,0), #f3f6f7 92%);
+}
+.hero-glass{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+.glass-orb{ position:absolute; border-radius:50%; filter:blur(60px); }
+.glass-orb.o1{ width:46vw; height:46vw; left:-10vw; top:-14vw; background:radial-gradient(circle, rgba(70,120,90,.55), rgba(70,120,90,0) 68%); }
+.glass-orb.o2{ width:42vw; height:42vw; right:-8vw; top:6vh;  background:radial-gradient(circle, rgba(100,140,215,.45), rgba(100,140,215,0) 68%); }
+.glass-orb.o3{ width:38vw; height:38vw; left:30vw; bottom:-18vw; background:radial-gradient(circle, rgba(39,54,16,.38), rgba(39,54,16,0) 68%); }
+.glass-pane{
+  position:absolute; border-radius:22px;
+  background:linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.14));
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 24px 60px rgba(39,54,16,.14), 0 1px 0 rgba(255,255,255,.9) inset;
+  -webkit-backdrop-filter:blur(18px) saturate(140%); backdrop-filter:blur(18px) saturate(140%);
+  animation:glassFloat 16s ease-in-out infinite;
+}
+.glass-pane::before{                  /* Fensterleiste mit drei Punkten */
+  content:""; position:absolute; left:18px; top:16px; width:8px; height:8px; border-radius:50%;
+  background:rgba(39,54,16,.30);
+  box-shadow:14px 0 0 rgba(39,54,16,.22), 28px 0 0 rgba(39,54,16,.14);
+}
+.glass-pane::after{                   /* angedeutete Inhaltszeilen */
+  content:""; position:absolute; left:18px; right:18px; top:44px; bottom:18px; border-radius:8px;
+  background:
+    linear-gradient(rgba(39,54,16,.13),rgba(39,54,16,.13)) 0 0/62% 9px no-repeat,
+    linear-gradient(rgba(39,54,16,.09),rgba(39,54,16,.09)) 0 24px/92% 9px no-repeat,
+    linear-gradient(rgba(39,54,16,.09),rgba(39,54,16,.09)) 0 44px/78% 9px no-repeat,
+    linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)) 0 70px/46% 54px no-repeat;
+}
+.glass-pane.p1{ width:290px; height:200px; left:5%;  top:17%;    rotate:-8deg; }
+.glass-pane.p2{ width:330px; height:220px; right:5%; top:12%;    rotate:7deg;  animation-delay:-5s; }
+.glass-pane.p3{ width:250px; height:160px; right:20%; bottom:11%; rotate:-5deg; animation-delay:-9s; }
+.glass-pane.p4{ width:210px; height:140px; left:17%; bottom:9%;  rotate:6deg;  animation-delay:-3s; }
+@keyframes glassFloat{ 0%,100%{ translate:0 0; } 50%{ translate:0 -14px; } }
+@media (prefers-reduced-motion:reduce){ .glass-pane{ animation:none; } }
+
+/* Lesbarkeits-Schleier hinter dem Hero-Text passend zum neuen Hintergrund */
+.hero-center::before{
+  background:radial-gradient(closest-side, rgba(246,249,246,.88) 42%, rgba(246,249,246,.55) 66%, rgba(246,249,246,0) 82%);
+}
+
+/* Unterseiten: gleicher Glas-Hauch im Seitenkopf */
+.page-hero::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(40vw 28vw at 92% 0%,  rgba(79,109,245,.22), transparent 65%),
+    radial-gradient(40vw 28vw at 4% 100%, rgba(34,211,238,.22),   transparent 65%);
+}
+.page-hero > .wrap{ position:relative; z-index:2; }
+.page-hero--video::before{ display:none; }
+
+@media (max-width:960px){
+  .glass-pane.p3, .glass-pane.p4{ display:none; }
+  .glass-pane.p1{ width:200px; height:140px; left:-4%; top:14%; }
+  .glass-pane.p2{ width:220px; height:150px; right:-6%; top:10%; }
+  .results .metrics{ padding:20px; gap:0; background:var(--glass); }
+  .metric{ background:transparent; padding:18px 12px; }
+}
+.results .metric{ min-width:0; padding-right:20px; }
+.results .metric b{ font-size:clamp(1.7rem,3.2vw,2.8rem); overflow-wrap:anywhere; }
+
+/* ============================================================
+   HERO: auffälligerer Glas-Look (kräftige Farben, Aurora-Bewegung)
+   ============================================================ */
+.hero{
+  background:
+    radial-gradient(90% 70% at 15% 10%, #c7d7ff 0%, transparent 60%),
+    radial-gradient(80% 70% at 90% 20%, #b5f0e6 0%, transparent 62%),
+    radial-gradient(90% 80% at 50% 105%, #c4f3f7 0%, transparent 60%),
+    linear-gradient(160deg,#e4ebff 0%,#dff7f3 48%,#e2f6fb 100%);
+}
+.glass-orb{ filter:blur(48px); animation:orbDrift 18s ease-in-out infinite; mix-blend-mode:multiply; }
+.glass-orb.o1{ width:56vw; height:56vw; left:-14vw; top:-18vw;
+  background:radial-gradient(circle, rgba(79,109,245,.72), rgba(79,109,245,0) 68%); }
+.glass-orb.o2{ width:52vw; height:52vw; right:-12vw; top:2vh; animation-delay:-6s;
+  background:radial-gradient(circle, rgba(20,184,166,.55), rgba(20,184,166,0) 68%); }
+.glass-orb.o3{ width:46vw; height:46vw; left:26vw; bottom:-22vw; animation-delay:-11s;
+  background:radial-gradient(circle, rgba(34,211,238,.62), rgba(34,211,238,0) 68%); }
+.glass-orb.o4{ width:30vw; height:30vw; left:58vw; top:-10vw; animation-delay:-3s;
+  background:radial-gradient(circle, rgba(132,204,22,.50), rgba(132,204,22,0) 68%); }
+@keyframes orbDrift{ 0%,100%{ translate:0 0; scale:1; } 50%{ translate:4vw 3vw; scale:1.12; } }
+
+.glass-pane{
+  background:linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.18));
+  border:1.5px solid rgba(255,255,255,.95);
+  box-shadow:0 30px 70px rgba(20,70,110,.22), 0 0 0 1px rgba(39,54,16,.06), 0 1px 0 #fff inset, 0 0 40px rgba(255,255,255,.35) inset;
+  -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
+}
+.glass-pane::before{ background:#14b8a6; box-shadow:14px 0 0 #22d3ee, 28px 0 0 #4f6df5; opacity:.9; }
+.glass-pane::after{
+  background:
+    linear-gradient(rgba(39,54,16,.28),rgba(39,54,16,.28)) 0 0/62% 10px no-repeat,
+    linear-gradient(rgba(39,54,16,.16),rgba(39,54,16,.16)) 0 24px/92% 9px no-repeat,
+    linear-gradient(rgba(39,54,16,.16),rgba(39,54,16,.16)) 0 44px/78% 9px no-repeat,
+    linear-gradient(135deg,rgba(79,109,245,.55),rgba(20,184,166,.45)) 0 70px/46% 54px no-repeat;
+}
+
+/* Lichtkranz hinter dem Bilderring als Markenzeichen */
+.hero-stage::before{
+  content:""; position:absolute; left:50%; top:50%; width:min(78vh,92vw); height:min(78vh,92vw);
+  transform:translate(-50%,-50%); border-radius:50%; pointer-events:none;
+  background:conic-gradient(from 0deg, rgba(79,109,245,.40), rgba(20,184,166,.40), rgba(34,211,238,.40), rgba(132,204,22,.36), rgba(79,109,245,.40));
+  filter:blur(40px); opacity:.85; animation:haloSpin 40s linear infinite;
+}
+@keyframes haloSpin{ to{ transform:translate(-50%,-50%) rotate(360deg); } }
+@media (prefers-reduced-motion:reduce){ .glass-orb, .hero-stage::before{ animation:none; } }
+
+.hero-center::before{
+  background:radial-gradient(closest-side, rgba(250,253,253,.9) 40%, rgba(250,253,253,.6) 64%, rgba(250,253,253,0) 82%);
+}
+.hero::after{ background:linear-gradient(180deg, rgba(243,245,241,0), #f3f6f7 94%); }
+
+/* ---------- Menüzeile: glasig grau ---------- */
+header.nav{
+  background:linear-gradient(180deg, rgba(214,217,222,.62), rgba(188,192,199,.48));
+  -webkit-backdrop-filter:blur(22px) saturate(160%); backdrop-filter:blur(22px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,.55);
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 8px 28px rgba(40,44,52,.10);
+}
+.nav-links a{ color:#43464e; }
+.nav-links a:hover{ color:var(--text); }
+.nav-dropdown{
+  background:rgba(214,217,222,.72);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 16px 40px rgba(40,44,52,.14), 0 1px 0 rgba(255,255,255,.7) inset;
+}
+.nav-dropdown a{ color:#43464e; }
+.nav-dropdown a:hover{ background:rgba(255,255,255,.45); }
+
+/* ============================================================
+   HERO-THEME AUF DER GANZEN SEITE (dezent)
+   ============================================================ */
+body{ background:#f3f6f8; }
+body::before{
+  background:
+    radial-gradient(58vw 48vw at 6% 8%,   rgba(79,109,245,.26), transparent 64%),
+    radial-gradient(52vw 46vw at 98% 22%, rgba(34,211,238,.24), transparent 64%),
+    radial-gradient(56vw 48vw at 10% 70%, rgba(20,184,166,.17), transparent 64%),
+    radial-gradient(50vw 44vw at 92% 88%, rgba(132,204,22,.17), transparent 64%),
+    linear-gradient(180deg,#f4f7f9 0%,#f1f6f8 50%,#f3f7f7 100%);
+}
+/* zweite, langsam driftende Ebene */
+body::after{
+  content:""; position:fixed; inset:-10%; z-index:-1; pointer-events:none; opacity:.9;
+  background:
+    radial-gradient(34vw 30vw at 72% 12%, rgba(20,184,166,.13), transparent 66%),
+    radial-gradient(38vw 32vw at 24% 52%, rgba(34,211,238,.13), transparent 66%),
+    radial-gradient(34vw 30vw at 80% 64%, rgba(79,109,245,.14), transparent 66%);
+  animation:pageDrift 26s ease-in-out infinite alternate;
+}
+@keyframes pageDrift{ from{ transform:translate3d(-2%,-1%,0) scale(1); } to{ transform:translate3d(2%,2%,0) scale(1.08); } }
+@media (prefers-reduced-motion:reduce){ body::after{ animation:none; } }
+
+/* Glas-Karten mit farbigem Schimmer wie im Hero */
+.pstep, .value-card, .feature-card, .results .metrics{
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.80), rgba(255,255,255,.38)),
+    linear-gradient(135deg, rgba(79,109,245,.07), rgba(34,211,238,.07));
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 18px 44px rgba(30,60,140,.09), 0 1px 0 #fff inset;
+}
+.pstep:hover, .value-card:hover{ box-shadow:0 22px 50px rgba(30,60,140,.15); }
+.icon-tile{ background:linear-gradient(135deg, rgba(79,109,245,.16), rgba(34,211,238,.18)); color:#1f3a5c; }
+.pstep-n{ background:linear-gradient(135deg,#4f6df5,#14b8a6 60%,#22d3ee); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+.service-media{ box-shadow:0 22px 50px rgba(30,60,140,.18), 0 0 0 1px rgba(255,255,255,.9); }
+.cta-inner{
+  background:
+    radial-gradient(120% 120% at 100% 0%, rgba(20,184,166,.14), transparent 55%),
+    radial-gradient(100% 100% at 0% 100%, rgba(79,109,245,.12), transparent 55%),
+    rgba(255,255,255,.72);
+  box-shadow:0 24px 60px rgba(30,60,140,.12), 0 1px 0 #fff inset;
+}
+footer{ background:rgba(255,255,255,.55); }
+.metric{ border-right-color:rgba(30,60,140,.14); }
+.faq, .faq details{ border-color:rgba(30,60,140,.16); }
+.faq summary::after{ color:#4f6df5; }
+
+/* Unterseiten-Kopf: Hero-Verlauf, dezenter, mit weichem Auslauf */
+.page-hero:not(.page-hero--video){
+  background:
+    radial-gradient(60% 120% at 8% 0%,  rgba(79,109,245,.30), transparent 62%),
+    radial-gradient(55% 120% at 96% 10%, rgba(34,211,238,.28), transparent 62%),
+    radial-gradient(60% 120% at 60% 110%, rgba(20,184,166,.22), transparent 62%);
+}
+.page-hero:not(.page-hero--video)::before{ display:none; }
+.page-hero:not(.page-hero--video)::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:60px; pointer-events:none; z-index:1;
+  background:linear-gradient(180deg, rgba(243,246,248,0), rgba(243,246,248,.9));
+}
+/* Seitenkopf-Verlauf mit weichem Auslauf statt harter Unterkante */
+.page-hero:not(.page-hero--video){ background:none; }
+.page-hero:not(.page-hero--video)::after{ display:none; }
+.page-hero:not(.page-hero--video)::before{
+  display:block; content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(60% 120% at 8% 0%,  rgba(79,109,245,.30), transparent 62%),
+    radial-gradient(55% 120% at 96% 10%, rgba(34,211,238,.28), transparent 62%),
+    radial-gradient(60% 120% at 60% 110%, rgba(20,184,166,.22), transparent 62%);
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
+}
+
+/* ---------- Scroll-Hintergrund (Linien-Grafik, baut sich beim Scrollen auf) ---------- */
+.scroll-bg{
+  position:fixed; right:max(1vw,0px); top:50%; z-index:-1; pointer-events:none;
+  height:min(92vh,1000px); aspect-ratio:7/8; --p:0;
+  transform:translateY(calc(-50% - var(--p) * 7vh)) scale(calc(1 + var(--p) * .12));
+  transform-origin:50% 50%;
+  -webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%, #000 42%, transparent 100%);
+  mask-image:radial-gradient(ellipse 72% 72% at 50% 50%, #000 42%, transparent 100%);
+}
+.scroll-bg svg{ width:100%; height:100%; display:block; overflow:visible; }
+.scroll-bg [data-seq]{ will-change:opacity,transform; }
+@media (max-width:960px){
+  .scroll-bg{ right:-22vw; opacity:.5; height:80vh; }
+}
+@media (prefers-reduced-motion:reduce){ .scroll-bg{ transform:translateY(-50%); } }
+/* Linien der Hintergrund-Grafik kräftiger, damit sie auf dem farbigen Hintergrund sichtbar bleiben */
+.scroll-bg [stroke="rgba(35,48,40,0.30)"]{ stroke:rgba(35,48,40,.58); }
+.scroll-bg [stroke="rgba(35,48,40,0.35)"]{ stroke:rgba(35,48,40,.62); }
+.scroll-bg [stroke="rgba(35,48,40,0.20)"]{ stroke:rgba(35,48,40,.40); }
+.scroll-bg [stroke="rgba(35,48,40,0.10)"]{ stroke:rgba(35,48,40,.20); }
+.scroll-bg [stroke="rgba(122,132,80,0.5)"]{ stroke:rgba(100,112,56,.85); }
+.scroll-bg [stroke="#7a8450"]{ stroke:#5f6e30; }
+.scroll-bg [fill="#7a8450"]{ fill:#5f6e30; }
+.scroll-bg [fill="rgba(255,255,255,0.55)"]{ fill:rgba(255,255,255,.72); }
+.scroll-bg [fill="rgba(255,255,255,0.40)"]{ fill:rgba(255,255,255,.55); }
+/* Checkliste als Glas-Panel, damit sie über der Hintergrund-Grafik gut lesbar bleibt */
+.check-list{
+  background:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.95); border-radius:calc(var(--radius) + 6px);
+  padding:26px 28px; box-shadow:0 18px 44px rgba(30,60,140,.09), 0 1px 0 #fff inset;
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+}

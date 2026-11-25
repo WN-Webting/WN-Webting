@@ -20,6 +20,61 @@
 </head>
 <body>
 
+<div class="scroll-bg" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 800" fill="none">
+  <defs>
+    <pattern id="grid-management" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="rgba(35,48,40,0.10)" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="800" fill="url(#grid-management)"/>
+  <g stroke="rgba(35,48,40,0.35)" stroke-width="1.5" stroke-dasharray="1" stroke-dashoffset="0">
+    <path data-draw data-seq="1" d="M180 235H350V330H480"/>
+    <path data-draw data-seq="1" d="M180 430H290V330H480"/>
+    <path data-draw data-seq="3" d="M480 330V570H330"/>
+    <path data-draw data-seq="5" d="M180 235V145H545V490"/>
+    <path data-draw data-seq="5" d="M330 570H100V430H180"/>
+  </g>
+  <g data-seq="0">
+    <rect x="84" y="158" width="194" height="304" rx="8" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <path d="M104 183H258M104 208H258" stroke="rgba(35,48,40,0.30)"/>
+    <g>
+      <rect x="103" y="233" width="156" height="35" rx="4" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+      <path d="M119 250H189" stroke="rgba(35,48,40,0.30)"/><circle cx="239" cy="250" r="3" fill="#7a8450"/>
+      <rect x="103" y="281" width="156" height="35" rx="4" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+      <path d="M119 298H189" stroke="rgba(35,48,40,0.30)"/><circle cx="239" cy="298" r="3" fill="#7a8450"/>
+      <rect x="103" y="329" width="156" height="35" rx="4" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+      <path d="M119 346H189" stroke="rgba(35,48,40,0.30)"/><circle cx="239" cy="346" r="3" fill="#7a8450"/>
+      <rect x="103" y="377" width="156" height="35" rx="4" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+      <path d="M119 394H189" stroke="rgba(35,48,40,0.30)"/><circle cx="239" cy="394" r="3" fill="#7a8450"/>
+    </g>
+    <path d="M120 438H196" stroke="rgba(35,48,40,0.30)"/>
+  </g>
+  <g data-seq="2">
+    <rect x="400" y="246" width="156" height="160" rx="8" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <path d="M478 274l31 12v27c0 24-16 40-31 46-15-6-31-22-31-46v-27z" stroke="rgba(35,48,40,0.35)" fill="none"/>
+    <path d="M464 314l10 10 20-23" stroke="#7a8450" stroke-width="2"/>
+    <path d="M444 382H510" stroke="rgba(35,48,40,0.30)"/>
+  </g>
+  <g data-seq="4">
+    <rect x="242" y="507" width="207" height="121" rx="8" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <circle cx="264" cy="530" r="3" fill="#7a8450"/><path d="M276 530H359M264 606H427" stroke="rgba(35,48,40,0.30)"/>
+    <path d="M264 579h19l9-12 12 22 13-34 14 27 11-11h27l12-13 11 21h33" stroke="#7a8450" stroke-width="2"/>
+  </g>
+  <g data-seq="6">
+    <rect x="508" y="474" width="83" height="83" rx="8" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+    <path d="M527 500h46M527 514h32M527 528h39" stroke="rgba(35,48,40,0.30)"/>
+  </g>
+  <g data-seq="7">
+    <circle cx="350" cy="145" r="7" stroke="rgba(35,48,40,0.35)"/><circle cx="350" cy="145" r="2" fill="#7a8450"/>
+    <circle cx="350" cy="330" r="7" stroke="rgba(35,48,40,0.35)"/><circle cx="350" cy="330" r="2" fill="#7a8450"/>
+    <circle cx="100" cy="430" r="7" stroke="rgba(35,48,40,0.35)"/><circle cx="100" cy="430" r="2" fill="#7a8450"/>
+    <circle cx="480" cy="570" r="7" stroke="rgba(35,48,40,0.35)"/><circle cx="480" cy="570" r="2" fill="#7a8450"/>
+    <circle cx="545" cy="490" r="7" stroke="rgba(35,48,40,0.35)"/><circle cx="545" cy="490" r="2" fill="#7a8450"/>
+  </g>
+</svg>
+</div>
+
 <header class="nav">
   <div class="wrap">
     <a href="index.html" class="brand"><img class="brand-logo" src="logo.svg" alt="WN-Webting Logo" />WN-Webting</a>
@@ -42,14 +97,7 @@
 </header>
 
 <!-- PAGE HERO -->
-<section class="page-hero page-hero--video">
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video class="hero-video" muted playsinline preload="auto">
-      <source src="hero-website-management.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-video-overlay"></div>
-    <div class="hero-video-watermark-mask"></div>
-  </div>
+<section class="page-hero">
   <div class="wrap">
     <a href="index.html#leistungen" class="back-link"><span aria-hidden="true">&larr;</span> Alle Leistungen</a>
     <span class="eyebrow">Leistung</span>
@@ -210,9 +258,6 @@
 </footer>
 
 <script src="app.js"></script>
-<!-- Hero scroll-video: GSAP loaded only on pages with a video hero -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="hero-scroll-video.js"></script>
+<script src="scroll-bg.js"></script>
 </body>
 </html>

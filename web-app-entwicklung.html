@@ -20,6 +20,55 @@
 </head>
 <body>
 
+<div class="scroll-bg" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 800" fill="none">
+  <defs>
+    <pattern id="grid-development" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="rgba(35,48,40,0.10)" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="800" fill="url(#grid-development)"/>
+  <g data-seq="0">
+    <rect x="96" y="183" width="510" height="420" rx="8" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <path d="M96 219H606" stroke="rgba(35,48,40,0.30)"/>
+    <circle cx="116" cy="201" r="3" fill="#7a8450"/>
+    <circle cx="128" cy="201" r="3" stroke="rgba(35,48,40,0.35)"/>
+    <circle cx="140" cy="201" r="3" stroke="rgba(35,48,40,0.35)"/>
+    <rect x="277" y="194" width="161" height="13" rx="4" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+  </g>
+  <g data-seq="1">
+    <rect x="113" y="236" width="94" height="349" rx="4" fill="rgba(255,255,255,0.40)" stroke="rgba(35,48,40,0.20)"/>
+    <rect x="124" y="258" width="72" height="24" rx="4" fill="rgba(122,132,80,0.25)" stroke="rgba(122,132,80,0.5)"/>
+    <path d="M128 303H180M128 340H180M128 377H180M128 414H180" stroke="rgba(35,48,40,0.30)"/>
+    <rect x="125" y="550" width="18" height="18" rx="4" stroke="rgba(35,48,40,0.35)"/>
+    <path d="M151 559H183" stroke="rgba(35,48,40,0.30)"/>
+  </g>
+  <g data-seq="2">
+    <rect x="224" y="237" width="363" height="68" rx="4" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <path d="M241 256H341M241 282H302" stroke="rgba(35,48,40,0.30)"/>
+    <rect x="505" y="255" width="63" height="24" rx="4" fill="rgba(122,132,80,0.25)" stroke="rgba(122,132,80,0.5)"/>
+  </g>
+  <g data-seq="3">
+    <rect x="224" y="322" width="219" height="152" rx="4" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <path d="M241 342H322M241 454H425" stroke="rgba(35,48,40,0.30)"/>
+    <path data-draw data-seq="4" d="M242 426l27-12 29 5 28-30 30 11 31-41 35 12" stroke="#7a8450" stroke-width="2"/>
+    <path d="M241 369H425M241 389H425M241 409H425M241 429H425" stroke="rgba(35,48,40,0.10)"/>
+  </g>
+  <g data-seq="5">
+    <rect x="460" y="322" width="127" height="152" rx="4" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <circle cx="523" cy="393" r="34" stroke="rgba(35,48,40,0.30)" stroke-width="10"/>
+    <path data-draw data-seq="6" d="M523 359a34 34 0 0 1 34 34" stroke="#7a8450" stroke-width="10"/>
+    <path d="M485 453H559" stroke="rgba(35,48,40,0.30)"/>
+  </g>
+  <g data-seq="7">
+    <rect x="224" y="491" width="363" height="94" rx="4" fill="rgba(255,255,255,0.55)" stroke="rgba(35,48,40,0.30)"/>
+    <rect x="242" y="506" width="13" height="13" rx="3" stroke="rgba(35,48,40,0.35)"/><path d="M269 512H418M488 512H567" stroke="rgba(35,48,40,0.30)"/>
+    <rect x="242" y="531" width="13" height="13" rx="3" stroke="rgba(35,48,40,0.35)"/><path d="M269 537H418M488 537H567" stroke="rgba(35,48,40,0.30)"/>
+    <rect x="242" y="556" width="13" height="13" rx="3" stroke="rgba(35,48,40,0.35)"/><path d="M269 562H418M488 562H567" stroke="rgba(35,48,40,0.30)"/>
+  </g>
+</svg>
+</div>
+
 <header class="nav">
   <div class="wrap">
     <a href="index.html" class="brand"><img class="brand-logo" src="logo.svg" alt="WN-Webting Logo" />WN-Webting</a>
@@ -203,5 +252,6 @@
 </footer>
 
 <script src="app.js"></script>
+<script src="scroll-bg.js"></script>
 </body>
 </html>
