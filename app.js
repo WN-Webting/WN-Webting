@@ -18,7 +18,7 @@
 
   /* Magnetic buttons */
   if(!reduce && window.matchMedia('(pointer:fine)').matches){
-    document.querySelectorAll('[data-magnetic]').forEach(function(btn){
+    document.querySelectorAll('.btn').forEach(function(btn){
       var raf;
       btn.addEventListener('mousemove', function(e){
         var r = btn.getBoundingClientRect();

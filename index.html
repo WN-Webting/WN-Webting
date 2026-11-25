@@ -26,7 +26,7 @@
 <!-- NAV (single line, 70px) -->
 <header class="nav">
   <div class="wrap">
-    <a href="#top" class="brand"><img class="brand-logo" src="logo.svg" alt="WN-Webting Logo" />WN-Webting</a>
+    <a href="#top" class="brand" aria-label="WN-Webting, zur Startseite"><img class="brand-logo" src="logo.svg" alt="WN-Webting Logo" /></a>
     <nav class="nav-links">
       <div class="nav-item">
         <a href="#leistungen">Leistungen <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -55,7 +55,7 @@
   <div class="hero-center">
     <span class="eyebrow">Web-Agentur</span>
     <h1>Sichtbar werden.<br><em>Kunden</em> gewinnen.</h1>
-    <p class="hero-sub">WN-Webting betreut Websites und entwickelt individuelle Web-Apps, die Besucher zu Kunden machen.</p>
+    <div class="hero-gap" aria-hidden="true"></div>
     <div class="hero-actions">
       <a href="#kontakt" class="btn btn-primary" data-magnetic>Kostenloses Erstgespräch <span class="btn-arrow">&rarr;</span></a>
       <a href="#leistungen" class="btn btn-ghost">Unsere Leistungen</a>
@@ -113,7 +113,7 @@
       <p>Von der ersten Anfrage bis zum fertigen Ergebnis. Klar strukturiert und ohne Risiko für dich.</p>
     </div>
     <div class="process-grid">
-      <div class="pstep reveal">
+      <div class="pstep">
         <div class="pstep-n">01</div>
         <div class="icon-tile" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/></svg>
@@ -121,7 +121,7 @@
         <h3>Erstgespräch</h3>
         <p>Wir lernen dich, dein Angebot und deine Ziele kennen. Kostenlos und unverbindlich.</p>
       </div>
-      <div class="pstep reveal">
+      <div class="pstep">
         <div class="pstep-n">02</div>
         <div class="icon-tile" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".5"/></svg>
@@ -129,7 +129,7 @@
         <h3>Strategie</h3>
         <p>Wir entwickeln einen klaren Plan, der genau auf dein Unternehmen und deine Zielgruppe zugeschnitten ist.</p>
       </div>
-      <div class="pstep reveal">
+      <div class="pstep">
         <div class="pstep-n">03</div>
         <div class="icon-tile" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6"/><path d="M9 6h9v9"/></svg>
@@ -137,7 +137,7 @@
         <h3>Umsetzung</h3>
         <p>Wir bauen deine Website oder Web-App sauber und setzen sie professionell für dich um.</p>
       </div>
-      <div class="pstep reveal">
+      <div class="pstep">
         <div class="pstep-n">04</div>
         <div class="icon-tile" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 15l5-5 4 3 5-7"/></svg>
@@ -539,5 +539,6 @@
   }
 })();
 </script>
+<script src="ribbon.js"></script>
 </body>
 </html>
